@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.snackbar.Snackbar
 import dev.hotwire.turbo.demo.R
+import dev.hotwire.turbo.demo.util.NEW_POST_URL
 import dev.hotwire.turbo.nav.TurboNavGraphDestination
 
 @TurboNavGraphDestination(uri = "turbo://fragment/web/home")
@@ -20,6 +22,16 @@ class WebHomeFragment : WebFragment() {
     }
 
     override fun shouldObserveTitleChanges(): Boolean {
-        return false
+        return true
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val fab: View = view.findViewById(R.id.new_post_btn)
+
+        fab.setOnClickListener { _view ->
+            navigate(NEW_POST_URL)
+        }
     }
 }

@@ -17,7 +17,8 @@
     {
       "patterns": [
         "^$",
-        "^/$"
+        "^/$",
+        "^/posts$"
       ],
       "properties": {
         "uri": "turbo://fragment/web/home",
@@ -26,7 +27,7 @@
     },
     {
       "patterns": [
-        "/signin$"
+        "/login$"
       ],
       "properties": {
         "context": "modal",
@@ -36,7 +37,8 @@
     },
     {
       "patterns": [
-        "/new$"
+        "/create$",
+        "/edit$"
       ],
       "properties": {
         "context": "modal",

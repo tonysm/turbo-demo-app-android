@@ -1,5 +1,6 @@
 package dev.hotwire.turbo.demo.main
 
+import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -46,6 +47,7 @@ class MainSessionNavHostFragment : TurboSessionNavHostFragment() {
         super.onSessionCreated()
         session.webView.settings.userAgentString = customUserAgent(session.webView)
         session.webView.initDayNightTheme()
+        session.webView.addJavascriptInterface(NativeBridge(), "NativeBridge")
 
         if (BuildConfig.DEBUG) {
             session.setDebugLoggingEnabled(true)
@@ -55,5 +57,12 @@ class MainSessionNavHostFragment : TurboSessionNavHostFragment() {
 
     private fun customUserAgent(webView: WebView): String {
         return "Turbo Native Android ${webView.settings.userAgentString}"
+    }
+
+    class NativeBridge {
+        @JavascriptInterface
+        override fun toString(): String {
+            return "hello"
+        }
     }
 }
